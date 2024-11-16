@@ -1,0 +1,13 @@
+.env
+
+# Tudo que está dentro de animale_images
+/animale_images/*
+
+# Tudo que está dentro de farm_images
+/farm_images/*
+
+# Tudo que está dentro de clothes_images
+/clothes_images/*
+
+# Tudo que está dentro de segment-anything
+/segment-anything/*
