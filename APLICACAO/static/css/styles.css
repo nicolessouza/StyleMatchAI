@@ -1,0 +1,165 @@
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+    background: rgb(17, 9, 29);
+}
+
+.header h1 {
+    margin: 0;
+    padding: 20px;
+    color: white;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    z-index: -1;
+    filter: blur(5px) opacity(0.4) brightness(0.5);
+    }
+
+.container {
+    border-radius: 40px;
+    width: 100%;
+    max-width: 700px;
+    height: 100%;
+    max-height: 450px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    text-align: center;
+    color: rgb(66, 65, 65);
+}
+
+.container .search-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.left, .right {
+    flex-grow: 1;
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .search-section .pilar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
+
+.container .search-section .pilar h4{
+    position: relative;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+    left: 0;
+    top: 0;
+    padding-left: 20px;
+}
+
+.container .search-section .pilar h4::before{
+    content: "> ";
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.container .search-section .pilar .attribute{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.container .search-section .upload-image {
+    width: 230px;
+    height: 300px;
+    border: 3px dashed rgb(189, 189, 189);
+    border-radius: 20px;
+
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+/* Contêiner para o upload de imagem e seleção de atributos */
+#productAttributes {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    margin: 20px auto; /* Centraliza e adiciona espaço acima e abaixo */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha os itens ao centro verticalmente */
+}
+
+.attribute {
+    width: 100%;
+    margin-bottom: 4px;
+    margin-left: 6px;
+}
+
+.attribute label {
+    font-weight: bold;
+    display: block; /* Garante que o label ocupe toda a linha */
+    margin-bottom: 5px; /* Espaço entre o label e o select */
+}
+
+.attribute select {
+    width: 100%;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+}
+
+
+
+/* Botão de Pesquisar */
+#searchButton {
+    padding: 10px 20px;
+    background-color: #010102;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Espaço acima do botão */
+}
+
+
+
+
+
+
+

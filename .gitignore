@@ -1,16 +1,26 @@
 .env
 
 # Tudo que está dentro de animale_images
-/animale_images/*
+*/animale_images/*
 
 # Tudo que está dentro de farm_images
-/farm_images/*
+*/farm_images/*
 
 # Tudo que está dentro de clothes_images
-/clothes_images/*
+*/clothes_images/*
 
 # Tudo que está dentro de segment-anything
-/segment-anything/*
+*/segment-anything/*
 
 # PLANEJAMENTO.ipynb
-PLANEJAMENTO.ipynb
+*/PLANEJAMENTO.ipynb
+
+# Tudo que está dentro de .ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Pycache
+*/__pycache__/*
+
+*/animale_images_bw/*
+
+*/animale_images_cropped/*
