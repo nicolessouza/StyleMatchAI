@@ -4,15 +4,20 @@ html {
 }
 
 body {
-    height: 100%;
+    margin: 0;
+    margin-top: 70px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0;
     font-family: Arial, sans-serif;
 }
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
     width: 100%;
     height: 70px;
     background: rgb(17, 9, 29);
@@ -39,11 +44,11 @@ body {
 .container {
     border-radius: 40px;
     width: 100%;
+    flex-wrap: wrap;
     max-width: 700px;
-    height: 100%;
-    max-height: 450px;
     background-color: rgb(255, 255, 255);
     margin: auto;
+    margin-bottom: 0px;
     text-align: center;
     color: rgb(66, 65, 65);
 }
@@ -57,10 +62,24 @@ body {
     align-items: center;
 }
 
+.container.results-section {
+    height: auto;
+    margin-top: 10px;
+}
+
+.container.results-section.loading {
+    background-color: purple;
+}
+
+
+.hidden {
+    display: none;
+}
+
 .left, .right {
     flex-grow: 1;
-    width:100%;
-    height: 100%;
+    min-width: 310px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -83,19 +102,26 @@ body {
     left: 0;
     top: 0;
     padding-left: 20px;
+    margin-top: 2px;
+    margin-bottom: 3px;
 }
 
 .container .search-section .pilar h4::before{
-    content: "> ";
+    content: "▶ ";
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 3px;
+    top: 1px;
+    font-size: 12px;
 }
 
 .container .search-section .pilar .attribute{
     display: flex;
     flex-direction: row;
     justify-content: left;
+}
+
+.container .pilar.grupo_produto{
+    width: 160px;
 }
 
 .container .search-section .upload-image {
@@ -108,21 +134,8 @@ body {
 
 .hidden {
     display: none;
-}
-
-
-
-/* Contêiner para o upload de imagem e seleção de atributos */
-#productAttributes {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    padding: 20px;
-    margin: 20px auto; /* Centraliza e adiciona espaço acima e abaixo */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Alinha os itens ao centro verticalmente */
+    min-height: 0px;
+    height: 0;
 }
 
 .attribute {
@@ -144,22 +157,227 @@ body {
     border: none;
 }
 
-
-
-/* Botão de Pesquisar */
-#searchButton {
-    padding: 10px 20px;
-    background-color: #010102;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px; /* Espaço acima do botão */
+.attributes_clothes{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
+/* Imagem segmentada preview */
+#imagePreview {
+    z-index: 0;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    object-position: top;
+    overflow: hidden;
+}
+
+#imagePreview.loading {
+    cursor: wait;
+}
+
+#cropped_image {
+    z-index: 1;
+    backdrop-filter: blur(18px);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    animation-delay: 0.6s;
+    transition: all 0.5s ease-in-out;
+}
+
+#imagePreview.loading #cropped_image {
+    filter: blur(20px) brightness(5);
+    backdrop-filter: blur(10px);
+    animation: breathe_blur_animation 5s infinite;
+}
+
+#imagePreviewContent {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#upload_image{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255, 0);
+    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.loading #upload_image{
+    cursor: wait;
+    pointer-events: none;
+}
+
+#upload_image .upload-image-icon{
+    width: 50px;
+    height: 50px;
+    background-image: url('/images/icons8-mais-150.svg');
+    transition: all 0.2s ease-in-out;
+    background-size: contain;
+}
+#upload_image .upload-image-text{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(127, 126, 126);
+    transition: all 0.2s ease-in-out;
+}
+
+.image-uploaded #upload_image>div{
+    filter: opacity(0);
+}
 
 
+#upload_image:hover{
+    background: rgba(125, 125, 125, 0.8);
+}
+#upload_image:hover>div{
+    transform: scale(1.05);
+    color: rgb(238, 238, 238);
+    filter: brightness(1.8);
+}
 
+@keyframes breathe_blur_animation {
+    0% {
+        backdrop-filter: blur(10px) brightness(1);
+    }
+    50% {
+        backdrop-filter: blur(18px) brightness(1.1);
+    }
+    100% {
+        backdrop-filter: blur(10px) brightness(1);
+    }
+}
 
+#pesquisar_btn{
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    background: black;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
 
+#pesquisar_btn:hover{
+    background: rgb(17, 9, 29);
+    transform: scale(1.02);
+}
+
+#pesquisar_btn:active{
+    transform: scale(0.98);
+    color: rgb(64, 57, 74);
+    background: rgb(41, 34, 46);
+}
+
+.disabled{
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: opacity(0.7) brightness(0.7);
+}
+
+/* resultados */
+#resultsSection {
+    padding: 5px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 600px;
+    transition: all 0.5s ease-in-out;
+}
+
+.result {
+    width: 160px;
+    height: 240px;
+    margin: 6px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Estilizando quando o result ta dentro de um atributo grupo = vestido */
+#resultsSection[grupo="vestido"] .result{
+    height: 400px;
+}
+
+#resultsSection[grupo="saia"] .result{
+    height: 300px;
+}
+
+#resultsSection[grupo="blusa"] .result{
+    height: 200px;
+}
+
+#resultsSection[grupo="calca"] .result{
+    height: 300px;
+}
+
+.result img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.result .info-produto{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    background: white;
+    font-size: 10px;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    padding: 10px;
+    z-index: 2;
+}
+
+.result:hover .info-produto{
+    opacity: 0.8;
+    backdrop-filter: blur(10px) brightness(1.2);
+}
+
+.result .info-produto p{
+    margin: 0;
+    padding: 0;
+}

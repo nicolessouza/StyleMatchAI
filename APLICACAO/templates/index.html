@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -14,13 +15,28 @@
     <div class="container">
         <div class="search-section" id="searchSection">
             <div class="left">
+                <div class="pilar grupo_produto">
+                    <h4>Grupo</h4>
+                    <div class="attribute" id="atributo_grupo">
+                        <select name="grupo" id="grupo_selecionado" onchange="updateAtributos()">
+                            <option value="blusa">blusa</option>
+                            <option value="calca">calca</option>
+                            <option value="vestido">vestido</option>
+                            <option value="saia">saia</option>
+                            <option value="short">short</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="upload-image" id="imagePreview">
+                    <div id="cropped_image"></div>
                     <div class="image-preview" id="imagePreviewContent">
                         <input type="file" id="imageInput" hidden onchange="uploadImage()">
-                        <label for="imageInput" class="upload-image">Upload Image</label>
-                        <div class="upload-image-icon">
-                            <p> "Upload Image Icon" </p>
-                        </div>
+                        <label for="imageInput" id="upload_image">
+                            <div class="upload-image-icon"></div>
+                            <div id="upload-image-text">
+                                Upload Image
+                            </div>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -28,175 +44,63 @@
                 <div class="attributes_clothes" id="attributesClothes">
                     <div id="productAttributes" class="attributes">
                         <div class="pilar">
-                            <h4>Grupo</h4>
-                            <div class="attribute" id="atributo_grupo">
-                                <div class="checkbox-wrapper-dramatico">
-                                    <input type="checkbox" id="filtrar_por_grupo" name="filtrar_por_grupo">
-                                    <div class="riscar_no_check">
-                                        <select name="grupo" id="filtro_grupo">
-                                            <option value="camiseta">Camiseta</option>
-                                            <option value="calca">Calça</option>
-                                            <option value="sapato">Sapato</option>
-                                        </select>
-                                    </div>
-                                  </div>
-                                
-                            </div>
-                        </div>
-                        <div class="pilar">
                             <h4>Cor</h4>
                             <div class="attribute" id="atributo_cor">
                                 <div class="checkbox-wrapper-dramatico">
-                                    <input type="checkbox" id="filtrar_por_cor" name="filtrar_por_cor">
+                                    <input type="checkbox" id="filtrar_por_cor" name="filtrar_por_cor" class="filtro_de_busca">
                                     <div class="riscar_no_check">
-                                        <select name="cor" id="filtro_cor">
-                                            <option value="branco">Branco</option>
-                                            <option value="preto">Preto</option>
-                                            <option value="azul">Azul</option>
-                                            <option value="vermelho">Vermelho</option>
-                                            <option value="verde">Verde</option>
-                                            <option value="amarelo">Amarelo</option>
-                                            <option value="rosa">Rosa</option>
-                                            <option value="roxo">Roxo</option>
-                                            <option value="laranja">Laranja</option>
-                                            <option value="marrom">Marrom</option>
-                                            <option value="cinza">Cinza</option>
-                                            <option value="bege">Bege</option>
-                                            <option value="rosa">Rosa</option>
-                                            <option value="vinho">Vinho</option>
-                                            <option value="azul claro">Azul Claro</option>
-                                            <option value="azul escuro">Azul Escuro</option>
-                                            <option value="verde claro">Verde Claro</option>
-                                            <option value="verde escuro">Verde Escuro</option>
-                                            <option value="amarelo claro">Amarelo Claro</option>
-                                            <option value="amarelo escuro">Amarelo Escuro</option>
-                                            <option value="rosa claro">Rosa Claro</option>
-                                            <option value="rosa escuro">Rosa Escuro</option>
-                                            <option value="roxo claro">Roxo Claro</option>
-                                            <option value="roxo escuro">Roxo Escuro</option>
-                                            <option value="laranja claro">Laranja Claro</option>
-                                            <option value="laranja escuro">Laranja Escuro</option>
-                                            <option value="marrom claro">Marrom Claro</option>
-                                            <option value="marrom escuro">Marrom Escuro</option>
-                                            <option value="cinza claro">Cinza Claro</option>
-                                            <option value="cinza escuro">Cinza Escuro</option>
-                                            <option value="bege claro">Bege Claro</option>
+                                        <select name="cor" id="filtro_cor" class="filtro_de_busca">
+                                            <option value="BRANCO">Branco</option>
+                                            <option value="PRETO">Preto</option>
+                                            <option value="BEGE">Bege</option>
+                                            <option value="AZUL">Azul</option>
+                                            <option value="VERDE">Verde</option>
+                                            <option value="AMARELO">Amarelo</option>
+                                            <option value="LARANJA">Laranja</option>
+                                            <option value="VERMELHO">Vermelho</option>
+                                            <option value="ROSA">Rosa</option>
+                                            <option value="ROXO">Roxo</option>
+                                            <option value="MARROM">Marrom</option>
+                                            <option value="MULTICOLORIDO">Multicolorido</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="pilar">
-                            <h4>Modelagem</h4>
-                            <div class="attribute" id="atributo_decote">
-                                <div class="checkbox-wrapper-dramatico">
-                                    <input type="checkbox" id="filtrar_por_decote" name="filtrar_por_decote">
-                                    <div class="riscar_no_check">
-                                        <select name="decote" id="filtro_decote">
-                                            <option value="redondo">Redondo</option>
-                                            <option value="v">V</option>
-                                            <option value="gola alta">Gola Alta</option>
-                                            <option value="gola careca">Gola Careca</option>
-                                            <option value="gola canoa">Gola Canoa</option>
-                                            <option value="gola polo">Gola Polo</option>
-                                            <option value="gola v">Gola V</option>
-                                            <option value="gola u">Gola U</option>
-                                            <option value="gola padre">Gola Padre</option>
-                                            <option value="gola choker">Gola Choker</option>
-                                            <option value="gola redonda">Gola Redonda</option>
-                                            <option value="gola quadrada">Gola Quadrada</option>
-                                            <option value="gola princesa">Gola Princesa</option>
-                                            <option value="gola canoa">Gola Canoa</option>
-                                            <option value="gola careca">Gola Careca</option>
-                                            <option value="gola alta">Gola Alta</option>
-                                            <option value="gola padre">Gola Padre</option>
-                                            <option value="gola polo">Gola Polo</option>
-                                            <option value="gola v">Gola V</option>
-                                            <option value="gola u">Gola U</option>
-                                            <option value="gola choker">Gola Choker</option>
-                                            <option value="gola redonda">Gola Redonda</option>
-                                            <option value="gola quadrada">Gola Quadrada</option>
-                                            <option value="gola princesa">Gola Princesa</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="attribute" id="atributo_comprimento">
-                                <div class="checkbox-wrapper-dramatico">
-                                    <input type="checkbox" id="filtrar_por_comprimento" name="filtrar_por_comprimento">
-                                    <div class="riscar_no_check">
-                                        <select name="comprimento" id="filtro_comprimento">
-                                            <option value="curto">Curto</option>
-                                            <option value="midi">Midi</option>
-                                            <option value="longo">Longo</option>
-                                            <option value="mini">Mini</option>
-                                            <option value="longuete">Longuete</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="attribute" id="atributo_tipo_saia">
-                                <div class="checkbox-wrapper-dramatico">
-                                    <input type="checkbox" id="filtrar_por_tipo_saia" name="filtrar_por_tipo_saia">
-                                    <div class="riscar_no_check">
-                                        <select name="tipo_saia" id="filtro_tipo_saia">
-                                            <option value="lapis">Lápis</option>
-                                            <option value="godê">Godê</option>
-                                            <option value="evase">Evase</option>
-                                            <option value="reta">Reta</option>
-                                            <option value="plissada">Plissada</option>
-                                            <option value="sino">Sino</option>
-                                            <option value="envelope">Envelope</option>
-                                            <option value="babado">Babado</option>
-                                            <option value="tulipa">Tulipa</option>
-                                            <option value="assimetrica">Assimétrica</option>
-                                            <option value="midi">Midi</option>
-                                            <option value="longa">Longa</option>
-                                            <option value="mini">Mini</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="pilar" id="pilar_modelagem">
+                            
                         </div>
                         <div class="pilar">
                             <h4>Estampa</h4>
                             <div class="attribute" id="atributo_estampa">
                                 <div class="checkbox-wrapper-dramatico">
-                                    <input type="checkbox" id="filtrar_por_estampa" name="filtrar_por_estampa">
+                                    <input type="checkbox" id="filtrar_por_estampa" name="filtrar_por_estampa" class="filtro_de_busca">
                                     <div class="riscar_no_check">
-                                        <select name="estampa" id="filtro_estampa">
-                                            <option value="lisa">Lisa</option>
-                                            <option value="listrada">Listrada</option>
+                                        <select name="estampa" id="filtro_estampa" class="filtro_de_busca">
+                                            <option value="liso">Liso</option>
+                                            <option value="floral">Floral</option>
+                                            <option value="onca">Onça</option>
                                             <option value="poa">Poá</option>
-                                            <option value="floral">Floral</option>
-                                            <option value="animal print">Animal Print</option>
+                                            <option value="geometrico">Geométrico</option>
+                                            <option value="cobra">Cobra</option>
+                                            <option value="listra">Listra</option>
+                                            <option value="abstrato">Abstrato</option>
                                             <option value="xadrez">Xadrez</option>
-                                            <option value="geométrica">Geométrica</option>
-                                            <option value="étnica">Étnica</option>
-                                            <option value="camuflada">Camuflada</option>
-                                            <option value="tie dye">Tie Dye</option>
-                                            <option value="militar">Militar</option>
-                                            <option value="abstrata">Abstrata</option>
-                                            <option value="floral">Floral</option>
-                                            <option value="animal print">Animal Print</option>
-                                            <option value="xadrez">Xadrez</option>
-                                            <option value="geométrica">Geométrica</option>
-                                            <option value="étnica">Étnica</option>
-                                            <option value="camuflada">Camuflada</option>
-                                            <option value="tie dye">Tie Dye</option>
-                                            <option value="militar">Militar</option>
-                                            <option value="abstrata">Abstrata</option>
+                                            <option value="leopardo">Leopardo</option>
+                                            <option value="folhagem">Folhagem</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <button onclick="search()">Pesquisar</button>
+                <button id="pesquisar_btn" onclick="search()" class="disabled">Pesquisar</button>
             </div>
             </div>
         </div>
-        <div id="resultsSection" class="results hidden"></div>
+    </div>
+    <div class="container results-section hidden" id="results-section-container">
+        <div id="resultsSection" class="results"></div>
     </div>
     <script src="js/script.js"></script>
 </body>

@@ -6,6 +6,9 @@
 # Tudo que está dentro de farm_images
 */farm_images/*
 
+# ignorando a pasta img dentro de web-scrapping
+*/web-scrapping/img/*
+
 # Tudo que está dentro de clothes_images
 */clothes_images/*
 
